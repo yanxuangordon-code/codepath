@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodePath — Learn to Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="nav-logo" onclick="showHome()">Code<span>Path</span></div>
+  <div class="nav-langs">
+    <button class="lang-pill py"   onclick="openLang('python')">🐍 Python</button>
+    <button class="lang-pill html" onclick="openLang('html')">🌐 HTML</button>
+    <button class="lang-pill js"   onclick="openLang('js')">⚡ JavaScript</button>
+    <button class="lang-pill cpp"  onclick="openLang('cpp')">⚙️ C++</button>
+  </div>
+  <div id="nav-progress-wrap">
+    <span id="nav-progress-label"></span>
+    <div class="nav-pbar"><div id="nav-pbar-fill"></div></div>
+  </div>
+</nav>
+<div class="progress-strip"><div id="progress-strip-fill"></div></div>
+
+<!-- HOME VIEW -->
+<div id="view-home" class="view active">
+  <div class="hero">
+    <div class="hero-tag">✦ Free · Beginner Friendly · Interactive</div>
+    <h1>Learn to Code<br><span class="grad">From Scratch</span></h1>
+    <p>Step-by-step lessons for complete beginners. Pick a language and start immediately — no setup needed.</p>
+  </div>
+  <div class="lang-grid">
+    <div class="lang-card py"   onclick="openLang('python')">
+      <div class="lc-icon">🐍</div>
+      <div class="lc-name">Python</div>
+      <div class="lc-desc">Great first language. Simple syntax, used in AI, data science, and web development.</div>
+      <div class="lc-meta"><span class="lc-count">7 lessons</span><span class="lc-prog" id="prog-python">0%</span></div>
+      <div class="lc-bar"><div class="lc-bar-fill py" id="bar-python"></div></div>
+      <div class="lc-start">Start Learning →</div>
+    </div>
+    <div class="lang-card html" onclick="openLang('html')">
+      <div class="lc-icon">🌐</div>
+      <div class="lc-name">HTML</div>
+      <div class="lc-desc">Build web pages. The foundation of every website on the internet.</div>
+      <div class="lc-meta"><span class="lc-count">6 lessons</span><span class="lc-prog" id="prog-html">0%</span></div>
+      <div class="lc-bar"><div class="lc-bar-fill html" id="bar-html"></div></div>
+      <div class="lc-start">Start Learning →</div>
+    </div>
+    <div class="lang-card js"   onclick="openLang('js')">
+      <div class="lc-icon">⚡</div>
+      <div class="lc-name">JavaScript</div>
+      <div class="lc-desc">Make websites interactive. The only language that runs in every browser.</div>
+      <div class="lc-meta"><span class="lc-count">7 lessons</span><span class="lc-prog" id="prog-js">0%</span></div>
+      <div class="lc-bar"><div class="lc-bar-fill js" id="bar-js"></div></div>
+      <div class="lc-start">Start Learning →</div>
+    </div>
+    <div class="lang-card cpp"  onclick="openLang('cpp')">
+      <div class="lc-icon">⚙️</div>
+      <div class="lc-name">C++</div>
+      <div class="lc-desc">Powerful systems language used in games, OS, and high-performance software.</div>
+      <div class="lc-meta"><span class="lc-count">6 lessons</span><span class="lc-prog" id="prog-cpp">0%</span></div>
+      <div class="lc-bar"><div class="lc-bar-fill cpp" id="bar-cpp"></div></div>
+      <div class="lc-start">Start Learning →</div>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON PICKER VIEW -->
+<div id="view-picker" class="view">
+  <div class="picker-header">
+    <button class="back-btn" onclick="showHome()">← Home</button>
+    <div>
+      <div class="picker-lang-name" id="picker-lang-name"></div>
+      <div class="picker-lang-sub" id="picker-lang-sub"></div>
+    </div>
+  </div>
+  <div class="lesson-cards" id="lesson-cards"></div>
+</div>
+
+<!-- LESSON VIEW -->
+<div id="view-lesson" class="view">
+  <div class="lesson-topbar">
+    <button class="back-btn" onclick="backToPicker()">← Lessons</button>
+    <div class="lesson-topbar-mid">
+      <span class="lesson-lang-badge" id="lesson-lang-badge"></span>
+      <span class="lesson-step-label" id="lesson-step-label"></span>
+    </div>
+    <div class="lesson-topbar-nav">
+      <button id="btn-prev" class="step-nav-btn" onclick="prevLesson()">‹ Prev</button>
+      <button id="btn-next" class="step-nav-btn primary" onclick="nextLesson()">Next ›</button>
+    </div>
+  </div>
+
+  <div class="lesson-body">
+    <div class="lesson-main">
+      <h1 class="lesson-title"    id="lesson-title"></h1>
+      <p  class="lesson-subtitle" id="lesson-subtitle"></p>
+      <p  class="lesson-intro"    id="lesson-intro"></p>
+
+      <div class="section-label">KEY CONCEPTS</div>
+      <div class="concept-grid" id="concept-grid"></div>
+
+      <div class="section-label">CODE EXAMPLE</div>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span class="code-filename" id="code-filename"></span>
+          <button class="copy-btn" id="copy-btn" onclick="copyCode()">Copy</button>
+        </div>
+        <pre class="code-pre" id="code-pre"></pre>
+      </div>
+
+      <div class="section-label">LINE-BY-LINE BREAKDOWN</div>
+      <div class="breakdown-list" id="breakdown-list"></div>
+
+      <div id="try-section" style="display:none">
+        <div class="section-label">TRY IT YOURSELF</div>
+        <div class="editor-wrap">
+          <textarea class="code-editor" id="code-editor" spellcheck="false"></textarea>
+          <div class="editor-footer">
+            <button class="run-btn" onclick="runCode()">▶ Run</button>
+            <button class="clear-btn" onclick="clearOutput()">✕ Clear</button>
+          </div>
+        </div>
+        <div class="output-box" id="output-box"></div>
+      </div>
+    </div>
+
+    <div class="lesson-sidebar">
+      <div class="sidebar-sticky">
+        <div class="quiz-card" id="quiz-card">
+          <div class="quiz-label">🧠 QUICK QUIZ</div>
+          <div id="mcq-container"></div>
+          <div class="quiz-score" id="quiz-score"></div>
+        </div>
+        <div id="challenges-section" style="display:none">
+          <div class="section-label" style="margin-top:24px">💻 CODING CHALLENGES</div>
+          <div id="challenges-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="lessons.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
