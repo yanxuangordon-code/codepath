@@ -513,10 +513,10 @@ function renderQuizQuestion(l, qIdx) {
       <div class="quiz-progress-fill" id="qpfill" style="width:${pct}%"></div>
     </div>
     <div class="quiz-q-num">Question ${qIdx+1} of ${total}</div>
-    <div class="quiz-q-text">${esc(q.q)}</div>
+    <div class="quiz-q-text">${display(q.q)}</div>
     <div class="quiz-opts" id="quizOpts">
       ${q.opts.map((opt, oi) =>
-        `<button class="quiz-opt" onclick="answerQuiz(${oi})">${esc(String(opt))}</button>`
+        `<button class="quiz-opt" onclick="answerQuiz(${oi})">${display(String(opt))}</button>`
       ).join("")}
     </div>
     <div class="quiz-feedback" id="qfeedback"></div>
@@ -553,7 +553,7 @@ function answerQuiz(chosen) {
     recordActivity();
   } else {
     fb.className = "quiz-feedback no";
-    fb.innerHTML = `❌ Not quite. The correct answer is: <strong>${esc(String(q.opts[correct]))}</strong>. ${getQuizExplanation(l, qIdx)}`;
+    fb.innerHTML = `❌ Not quite. The correct answer is: <strong>${display(String(q.opts[correct]))}</strong>. ${getQuizExplanation(l, qIdx)}`;
   }
 
   document.getElementById("qNextBtn").style.display = "inline-block";
@@ -736,8 +736,31 @@ function showCongrats() {
 }
 
 // ── Utility ───────────────────────────────────────────────────
+
+// esc() — use for plain strings that should NOT contain HTML entities already
 function esc(s) {
   if (typeof s !== "string") return String(s||"");
   return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
           .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+
+// display() — use for quiz opts / question text that may already contain
+// &lt; &gt; &amp; entities from the lesson data (HTML lessons).
+// Decodes once so the browser renders < > correctly, never double-encodes.
+function display(s) {
+  if (typeof s !== "string") return String(s||"");
+  // Decode any existing HTML entities first, then re-encode safely
+  const decoded = s
+    .replace(/&lt;/g,  "<")
+    .replace(/&gt;/g,  ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g,'"')
+    .replace(/&#39;/g, "'");
+  // Now safely re-encode for innerHTML insertion
+  return decoded
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
 }
