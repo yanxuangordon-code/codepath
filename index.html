@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <div class="logo" onclick="goHome()">Code<span>Path</span></div>
   <div class="nav-pills">
@@ -17,57 +18,71 @@
     <button class="pill cpp"  onclick="openLang('cpp')">⚙️ C++</button>
   </div>
   <div class="nav-right">
-    <div class="xp-pill" id="xpPill">⚡ <span id="xpVal">0</span> XP</div>
-    <div class="streak-pill" id="streakPill">🔥 <span id="streakVal">0</span></div>
+    <div class="xp-pill">⚡ <span id="xpVal">0</span> XP</div>
+    <div class="streak-pill">🔥 <span id="streakVal">0</span></div>
     <button class="nav-icon-btn" onclick="openBookmarks()" title="Bookmarks">🔖</button>
-    <button class="nav-icon-btn" onclick="openAllNotes()" title="Notes">📝</button>
+    <button class="nav-icon-btn" onclick="openAllNotes()" title="My Notes">📝</button>
   </div>
 </nav>
 <div class="pstrip"><div id="psfill"></div></div>
 
-<!-- HOME -->
+<!-- ═══ HOME ═══════════════════════════════════ -->
 <div id="vHome" class="view on">
+
   <div class="hero">
-    <div class="htag">✦ Free · Interactive · No Setup Needed</div>
-    <h1>Learn to Code<br><span class="g">From Scratch</span></h1>
-    <p>Step-by-step lessons with live code editors, quizzes, challenges and progress tracking.</p>
+    <div class="htag">Free · Interactive · No Setup Needed</div>
+    <h1>Learn to Code<br><span class="g">Step by Step</span></h1>
+    <p>Hands-on lessons, live code editors, quizzes, challenges, and progress tracking — all in your browser.</p>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-n">60</div><div class="hstat-l">Lessons</div></div>
       <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">Languages</div></div>
       <div class="hstat"><div class="hstat-n">100+</div><div class="hstat-l">Challenges</div></div>
-      <div class="hstat"><div class="hstat-n">∞</div><div class="hstat-l">Free</div></div>
+      <div class="hstat"><div class="hstat-n">Free</div><div class="hstat-l">Forever</div></div>
     </div>
   </div>
+
   <div class="lgrid">
     <div class="lcard py" onclick="openLang('python')">
-      <div class="lcard-top"><div class="lci">🐍</div><div class="lbadge-mini py">Recommended First</div></div>
+      <div class="lcard-top">
+        <div class="lci">🐍</div>
+        <div class="lbadge-mini py">Best First Language</div>
+      </div>
       <div class="lcn">Python</div>
-      <div class="lcd">The world's most popular beginner language. Readable syntax, used in AI, data science, automation and web development.</div>
+      <div class="lcd">Readable, powerful, and beginner-friendly. Used in AI, data science, automation and web development worldwide.</div>
       <div class="lfeats"><span>▶ Interactive</span><span>🎯 Challenges</span><span>🧠 Quizzes</span></div>
       <div class="lcm"><span>15 lessons</span><span class="lcp" id="pct-python">0%</span></div>
       <div class="lcbar"><div class="lcbf py" id="bf-python"></div></div>
       <div class="lcgo">Start Learning →</div>
     </div>
     <div class="lcard html" onclick="openLang('html')">
-      <div class="lcard-top"><div class="lci">🌐</div><div class="lbadge-mini html">Web Foundations</div></div>
+      <div class="lcard-top">
+        <div class="lci">🌐</div>
+        <div class="lbadge-mini html">Web Foundations</div>
+      </div>
       <div class="lcn">HTML & CSS</div>
-      <div class="lcd">Build real web pages from scratch. HTML structures content, CSS makes it beautiful. Every website uses these.</div>
+      <div class="lcd">Build real web pages from scratch. HTML structures content, CSS makes it beautiful. Every website uses both.</div>
       <div class="lfeats"><span>📖 Visual</span><span>🧠 Quizzes</span><span>💡 Examples</span></div>
       <div class="lcm"><span>15 lessons</span><span class="lcp" id="pct-html">0%</span></div>
       <div class="lcbar"><div class="lcbf html" id="bf-html"></div></div>
       <div class="lcgo">Start Learning →</div>
     </div>
     <div class="lcard js" onclick="openLang('js')">
-      <div class="lcard-top"><div class="lci">⚡</div><div class="lbadge-mini js">Runs In Browser</div></div>
+      <div class="lcard-top">
+        <div class="lci">⚡</div>
+        <div class="lbadge-mini js">Runs in Browser</div>
+      </div>
       <div class="lcn">JavaScript</div>
-      <div class="lcd">Make websites interactive and dynamic. The only language that runs natively in every web browser in the world.</div>
+      <div class="lcd">Make websites interactive and dynamic. The only language that runs natively in every web browser on earth.</div>
       <div class="lfeats"><span>▶ Interactive</span><span>🎯 Challenges</span><span>🧠 Quizzes</span></div>
       <div class="lcm"><span>15 lessons</span><span class="lcp" id="pct-js">0%</span></div>
       <div class="lcbar"><div class="lcbf js" id="bf-js"></div></div>
       <div class="lcgo">Start Learning →</div>
     </div>
     <div class="lcard cpp" onclick="openLang('cpp')">
-      <div class="lcard-top"><div class="lci">⚙️</div><div class="lbadge-mini cpp">Advanced</div></div>
+      <div class="lcard-top">
+        <div class="lci">⚙️</div>
+        <div class="lbadge-mini cpp">Advanced</div>
+      </div>
       <div class="lcn">C++</div>
       <div class="lcd">High-performance compiled language. Powers AAA games, operating systems, embedded systems and financial software.</div>
       <div class="lfeats"><span>📖 In-Depth</span><span>🧠 Quizzes</span><span>📊 Diagrams</span></div>
@@ -76,32 +91,34 @@
       <div class="lcgo">Start Learning →</div>
     </div>
   </div>
-  <div id="recentWrap" style="display:none;max-width:900px;margin:0 auto;padding:0 18px 60px">
-    <div class="section-hdr">📈 Continue Where You Left Off</div>
+
+  <div id="recentWrap" class="recent-section" style="display:none">
+    <div class="section-hdr">Continue where you left off</div>
     <div id="recentList" class="recent-list"></div>
   </div>
+
 </div>
 
-<!-- PICKER -->
+<!-- ═══ PICKER ══════════════════════════════════ -->
 <div id="vPicker" class="view">
   <div class="pkrhdr">
-    <button class="backbtn" onclick="goHome()">← Home</button>
+    <button class="backbtn" onclick="goHome()">← Back</button>
     <div class="pkr-info">
       <div class="pkrname" id="pkrname"></div>
       <div class="pkrsub"  id="pkrsub"></div>
     </div>
     <div class="pkr-progress">
-      <div class="pkr-stat-row">
-        <span id="pkrDone">0</span><small>/ 15 complete</small>
-      </div>
+      <div class="pkr-stat-row"><span id="pkrDone">0</span> / 15 complete</div>
       <div class="pkr-xp-bar"><div id="pkrXpFill"></div></div>
     </div>
   </div>
   <div class="lcards" id="lcards"></div>
 </div>
 
-<!-- LESSON -->
+<!-- ═══ LESSON ══════════════════════════════════ -->
 <div id="vLesson" class="view">
+
+  <!-- Top bar -->
   <div class="ltop">
     <button class="backbtn" onclick="goBack()">← Lessons</button>
     <div class="ltopmid">
@@ -109,20 +126,21 @@
       <span class="lstep"  id="lstep"></span>
     </div>
     <div class="ltopnav">
-      <button class="nav-icon-btn" id="bookmarkBtn" onclick="toggleBookmark()" title="Bookmark this lesson">🔖</button>
-      <button id="bprev" class="snav" onclick="prevL()">‹ Prev</button>
-      <button id="bnext" class="snav hi" onclick="nextL()">Next ›</button>
+      <button class="nav-icon-btn" id="bookmarkBtn" onclick="toggleBookmark()" title="Bookmark">🔖</button>
+      <button id="bprev" class="snav" onclick="prevL()">← Prev</button>
+      <button id="bnext" class="snav hi" onclick="nextL()">Next →</button>
     </div>
   </div>
 
+  <!-- Tab bar -->
   <div class="tab-bar">
-    <button class="tab-btn active" id="tab-lesson"   onclick="switchTab('lesson')">📖 Lesson</button>
-    <button class="tab-btn"        id="tab-practice" onclick="switchTab('practice')">⚡ Practice</button>
-    <button class="tab-btn"        id="tab-quiz"     onclick="switchTab('quiz')">🧠 Quiz</button>
-    <button class="tab-btn"        id="tab-notes"    onclick="switchTab('notes')">📝 Notes</button>
+    <button class="tab-btn active" id="tab-lesson"   onclick="switchTab('lesson')">Lesson</button>
+    <button class="tab-btn"        id="tab-practice" onclick="switchTab('practice')">Practice</button>
+    <button class="tab-btn"        id="tab-quiz"     onclick="switchTab('quiz')">Quiz</button>
+    <button class="tab-btn"        id="tab-notes"    onclick="switchTab('notes')">Notes</button>
   </div>
 
-  <!-- LESSON TAB -->
+  <!-- ── LESSON TAB ── -->
   <div class="tab-pane active" id="pane-lesson">
     <div class="lesson-wrap">
       <div class="lesson-hero">
@@ -132,20 +150,20 @@
         <div class="lfacts" id="lfacts"></div>
       </div>
 
-      <div class="slbl">🎯 KEY CONCEPTS</div>
+      <div class="slbl">Key Concepts</div>
       <div class="cgrid" id="cgrid"></div>
 
-      <div class="slbl">💻 CODE EXAMPLE</div>
+      <div class="slbl">Code Example</div>
       <div class="cblock">
         <div class="chdr">
           <div class="cdots"><span></span><span></span><span></span></div>
           <span class="cfn" id="cfn"></span>
-          <button class="cpbtn" onclick="copyCode()">📋 Copy</button>
+          <button class="cpbtn" onclick="copyCode()">Copy</button>
         </div>
         <pre class="cpre" id="cpre"></pre>
       </div>
 
-      <div class="slbl">🔍 LINE-BY-LINE BREAKDOWN</div>
+      <div class="slbl">Line-by-Line Breakdown</div>
       <div class="bkdn" id="bkdn"></div>
 
       <div class="dyk" id="dyk" style="display:none">
@@ -154,38 +172,40 @@
       </div>
 
       <div class="lesson-cta">
-        <button class="cta-btn practice" id="ctaPractice" onclick="switchTab('practice')">⚡ Try It Yourself</button>
-        <button class="cta-btn quiz"                       onclick="switchTab('quiz')">🧠 Take the Quiz</button>
+        <button class="cta-btn practice" id="ctaPractice" onclick="switchTab('practice')">Try It Yourself →</button>
+        <button class="cta-btn quiz"                       onclick="switchTab('quiz')">Take the Quiz →</button>
       </div>
     </div>
   </div>
 
-  <!-- PRACTICE TAB -->
+  <!-- ── PRACTICE TAB ── -->
   <div class="tab-pane" id="pane-practice">
     <div class="practice-wrap">
+
       <div id="trysec">
         <div class="practice-hdr">
           <div>
-            <div class="slbl">⚡ CODE EDITOR</div>
-            <p class="practice-sub" id="practiceSub">Modify the code or write your own. Click Run to see the output.</p>
+            <div class="slbl" style="margin-top:0">Code Editor</div>
+            <p class="practice-sub" id="practiceSub">Edit the code and click Run to see the output.</p>
           </div>
           <div class="editor-toolbar">
             <button class="runbtn"   onclick="runMain()">▶ Run</button>
             <button class="resetbtn" onclick="resetMain()">↺ Reset</button>
-            <button class="clrbtn"   onclick="clrMain()">✕ Clear</button>
+            <button class="clrbtn"   onclick="clrMain()">✕ Clear output</button>
           </div>
         </div>
         <div class="edwrap">
           <div class="line-nums" id="lineNums">1</div>
-          <textarea class="codearea" id="codearea" spellcheck="false" oninput="syncLineNums(this)"></textarea>
+          <textarea class="codearea" id="codearea" spellcheck="false"
+            oninput="syncLineNums(this)" onkeydown="handleTab(event)"></textarea>
         </div>
         <div class="outbox" id="outbox"></div>
       </div>
 
       <div id="chsec" style="display:none">
         <div class="challenges-hdr">
-          <div class="slbl">🎯 CODING CHALLENGES</div>
-          <p class="practice-sub">Complete these challenges to earn XP and cement your understanding.</p>
+          <div class="slbl" style="margin-top:0">Coding Challenges</div>
+          <p class="practice-sub">Complete challenges to earn XP and deepen your understanding.</p>
           <div class="ch-progress-row" id="chProgressRow"></div>
         </div>
         <div id="chwrap"></div>
@@ -193,59 +213,69 @@
 
       <div id="noPractice" style="display:none">
         <div class="no-practice">
-          <div style="font-size:3rem;margin-bottom:14px">🖥️</div>
-          <h3>This language runs outside the browser</h3>
-          <p>HTML and C++ code can't execute in-browser. Copy the code examples and paste them into an online compiler to see them run.</p>
+          <div style="font-size:3rem;margin-bottom:16px">🖥️</div>
+          <h3>Runs outside the browser</h3>
+          <p>HTML and C++ code can't execute here. Copy the examples into an online compiler to run them.</p>
           <div class="ext-links">
-            <a href="https://replit.com" target="_blank" class="ext-link">Open Replit →</a>
-            <a href="https://godbolt.org" target="_blank" class="ext-link">Open Godbolt (C++) →</a>
+            <a href="https://replit.com"  target="_blank" class="ext-link">Open Replit</a>
+            <a href="https://godbolt.org" target="_blank" class="ext-link">Open Godbolt (C++)</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- QUIZ TAB -->
+  <!-- ── QUIZ TAB ── -->
   <div class="tab-pane" id="pane-quiz">
-    <div class="quiz-outer" id="quizOuter">
-      <!-- quiz-start, quiz-question, quiz-result rendered by JS -->
-    </div>
+    <div class="quiz-outer" id="quizOuter"></div>
   </div>
 
-  <!-- NOTES TAB -->
+  <!-- ── NOTES TAB ── -->
   <div class="tab-pane" id="pane-notes">
     <div class="notes-wrap">
       <div class="notes-hdr">
         <div>
-          <div class="slbl">📝 MY LESSON NOTES</div>
-          <p class="practice-sub">Jot down anything — key ideas, questions, your own examples. Auto-saved to your browser.</p>
+          <div class="slbl" style="margin-top:0">My Notes</div>
+          <p class="practice-sub">Jot down key ideas, questions, or your own examples. Auto-saved locally.</p>
         </div>
         <button class="clrbtn" onclick="clearNotes()">Clear</button>
       </div>
       <textarea class="notes-area" id="notesArea"
-        placeholder="Write your notes here...&#10;&#10;Examples:&#10;• Key things to remember&#10;• Questions I have&#10;• My own code examples"></textarea>
-      <div class="notes-status" id="notesStatus">All notes saved locally.</div>
+        placeholder="Write your notes here...&#10;&#10;• Key things to remember&#10;• Questions I have&#10;• My own examples"></textarea>
+      <div class="notes-status" id="notesStatus"></div>
+    </div>
+  </div>
+
+</div><!-- end vLesson -->
+
+<!-- ═══ BOOKMARKS MODAL ══════════════════════ -->
+<div class="modal-overlay" id="bookmarksModal" onclick="closeModal('bookmarksModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-hdr">
+      <span>Bookmarks</span>
+      <button onclick="closeModal('bookmarksModal')">✕</button>
+    </div>
+    <div class="modal-body" id="bookmarksList">
+      <p class="modal-empty">No bookmarks yet.<br>Click 🔖 on any lesson to save it here.</p>
     </div>
   </div>
 </div>
 
-<!-- BOOKMARKS MODAL -->
-<div class="modal-overlay" id="bookmarksModal" onclick="closeModal('bookmarksModal')">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-hdr"><span>🔖 Bookmarked Lessons</span><button onclick="closeModal('bookmarksModal')">✕</button></div>
-    <div class="modal-body" id="bookmarksList"><p class="modal-empty">No bookmarks yet. Click 🔖 on any lesson to save it.</p></div>
-  </div>
-</div>
-
-<!-- ALL NOTES MODAL -->
+<!-- ═══ NOTES MODAL ══════════════════════════ -->
 <div class="modal-overlay" id="notesModal" onclick="closeModal('notesModal')">
   <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-hdr"><span>📝 All My Notes</span><button onclick="closeModal('notesModal')">✕</button></div>
-    <div class="modal-body" id="allNotesList"><p class="modal-empty">No notes yet. Open any lesson and start writing in the Notes tab.</p></div>
+    <div class="modal-hdr">
+      <span>All Notes</span>
+      <button onclick="closeModal('notesModal')">✕</button>
+    </div>
+    <div class="modal-body" id="allNotesList">
+      <p class="modal-empty">No notes yet.<br>Open a lesson and write in the Notes tab.</p>
+    </div>
   </div>
 </div>
 
-<!-- XP TOAST -->
+<!-- ═══ XP TOAST ════════════════════════════ -->
 <div class="xp-toast" id="xpToast"></div>
 
 <script src="lessons.js"></script>
