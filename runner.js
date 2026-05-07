@@ -197,8 +197,16 @@ function runPython(src) {
       if (dotMatch[2] === "upper"  && typeof obj === "string") return () => obj.toUpperCase();
       return undefined;
     }
-    // Variable lookup
-    if (/^\w+$/.test(expr)) return scope[expr] ?? env[expr];
+    // Variable lookup — if name not in scope, it's a NameError
+    if (/^\w+$/.test(expr)) {
+      const val = scope[expr] ?? env[expr];
+      if (val === undefined && !/^(True|False|None)$/.test(expr)) {
+        const msg = "NameError: name '" + expr + "' is not defined";
+        output.push(msg);
+        throw { __pyerror: msg };
+      }
+      return val;
+    }
 
     // Arithmetic / comparison — safe JS eval with variable substitution
     let js = expr
@@ -216,6 +224,15 @@ function runPython(src) {
                 : v === null ? "null" : String(v);
       js = js.replace(new RegExp("\\b" + name + "\\b", "g"), sub);
     });
+
+    // Guard: bare multi-word expression like print(My name is Alex) = Python NameError
+    const looksLikeBareWords = /^[A-Za-z_][A-Za-z0-9_]*(\s+[A-Za-z_][A-Za-z0-9_]*)+$/.test(expr.trim());
+    if (looksLikeBareWords) {
+      const firstName = expr.trim().split(/\s+/)[0];
+      const msg = "NameError: name '" + firstName + "' is not defined";
+      output.push(msg);
+      throw { __pyerror: msg };
+    }
 
     try { return new Function('"use strict"; return (' + js + ")")(); }
     catch { return expr; }
@@ -282,6 +299,7 @@ function runPython(src) {
           }
           try { execLines(block, localEnv, ops); }
           catch(e) {
+            if (e && e.__pyerror)  throw e;
             if (e && e.__break)    break;
             if (e && e.__continue) continue;
             if (e && e.__return)   throw e;
@@ -298,6 +316,7 @@ function runPython(src) {
         while (evalExpr(whileM[1], localEnv) && safety++ < 400 && ops++ < 800) {
           try { execLines(block, localEnv, ops); }
           catch(e) {
+            if (e && e.__pyerror)  throw e;
             if (e && e.__break)    break;
             if (e && e.__continue) continue;
             if (e && e.__return)   throw e;
@@ -468,7 +487,10 @@ function runPython(src) {
   }
 
   try { execLines(lines, env, 0); }
-  catch(e) { if (e && e.__return === undefined) output.push("⚠ " + String(e)); }
+  catch(e) {
+    if (e && e.__pyerror) { /* already pushed error message */ }
+    else if (e && e.__return === undefined) output.push("⚠ " + String(e));
+  }
 
   return output.join("\n") || "(no output)";
 }

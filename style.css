@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   --bg:    #08080e;
@@ -19,7 +19,7 @@
   --ht:    #fb923c;
   --js:    #facc15;
   --cpp:   #c084fc;
-  --mn: 'JetBrains Mono', monospace;
+  --mn: 'Fira Code', 'Cascadia Code', 'Consolas', 'Menlo', 'Monaco', monospace;
   --sn: 'Inter', sans-serif;
   --r: 8px;
   --r2: 14px;
